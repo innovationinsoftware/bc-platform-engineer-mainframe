@@ -15,7 +15,7 @@
 
 On the left sidebar, click the icon that looks like a computer with a connection icon.
 
-In the Remote Explorer, hover your mouse cursor over **SSH**, click on the gear icon (⚙️) in the top right corner, and select the top option: `C:\Users\tekstudent\.ssh\config` This will open the SSH configuration file in a new editor tab.
+In the Remote Explorer, hover your mouse cursor over **SSH**, click on the gear icon (⚙️) in the top right corner, and select the top option: `C:\Users\<your-user-name>\.ssh\config` This will open the SSH configuration file in a new editor tab.
 
 
 ### Add the SSH configuration for the lab servers.
@@ -24,7 +24,7 @@ Add the following lines to the SSH configuration file, replacing `<IP of Tower s
 ```plaintext
 Host tower
   HostName <IP of Tower server from the spreadsheet>
-  IdentityFile "C:\Users\tekstudent\Downloads\repos\bc-platform-engineer-mainframe\modules\ansible\labs\keys\ansible_lab.pem"
+  IdentityFile "<path-to-bc-platform-engineer-mainframe-repository>\modules\ansible\labs\keys\ansible_lab.pem"
   User ansible
 ```
 

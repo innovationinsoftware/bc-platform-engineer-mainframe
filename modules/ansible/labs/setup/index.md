@@ -24,7 +24,21 @@ Add the following lines to the SSH configuration file, replacing `<IP of Tower s
 ```plaintext
 Host tower
   HostName <IP of Tower server from the spreadsheet>
-  IdentityFile "<path-to-bc-platform-engineer-mainframe-repository>\modules\ansible\labs\keys\ansible_lab.pem"
+  IdentityFile "<path-to-bc-platform-engineer-mainframe-repository>/modules/ansible/labs/keys/ansible_lab.pem"
+  User ansible
+```
+
+Alternatively, you can copy the `ansible_lab.pem` key to your local `.ssh` directory first:
+```
+cp <path-to-bc-platform-engineer-mainframe-repository>/modules/ansible/labs/keys/ansible_lab.pem ~/.ssh/ansible_lab.pem
+```
+
+And then use a shorter path to `IdentityFile`:
+
+```plaintext
+Host tower
+  HostName <IP of Tower server from the spreadsheet>
+  IdentityFile ~/.ssh/ansible_lab.pem
   User ansible
 ```
 

@@ -41,7 +41,7 @@ Use delegation techniques to execute tasks on the control node.
 3. Run the playbook:
 
 ```bash
-ansible-navigator run delegate_tasks.yml -m stdout
+ansible-playbook delegate_tasks.yml 
 ```
 
 4. Replace `127.0.0.1` with `localhost` and test again.
@@ -107,7 +107,7 @@ Execute long-running tasks asynchronously and monitor their completion status.
 3. Run the playbook:
 
 ```bash
-ansible-navigator run async_polling.yml -m stdout
+ansible-playbook async_polling.yml 
 ```
 
 4. Increase the sleep timer and adjust retry values.
@@ -154,7 +154,7 @@ Use dry-run execution techniques to validate changes before applying them.
 3. Run the playbook in check and diff mode:
 
 ```bash
-ansible-navigator run rolling_audit.yml -m stdout --check --diff
+ansible-playbook rolling_audit.yml --check --diff
 ```
 
 4. Review the diff output carefully.
@@ -207,7 +207,7 @@ Use the Ansible debugger to inspect task failures and correct values during runt
 3. Run the playbook:
 
 ```bash
-ansible-navigator run runtime_debugging.yml -m stdout
+ansible-playbook runtime_debugging.yml 
 ```
 
 4. At the debugger prompt, inspect task arguments:

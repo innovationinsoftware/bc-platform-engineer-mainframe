@@ -147,7 +147,7 @@ cd lab-vars
 4. Run the playbook:
 
 ```bash
-ansible-navigator run complex_vars.yml -m stdout
+ansible-playbook complex_vars.yml 
 ```
 
 5. Add another region and package to the variables section.
@@ -206,19 +206,19 @@ log_level: "info"
 3. Run the playbook normally:
 
 ```bash
-ansible-navigator run precedence_flow.yml -m stdout
+ansible-playbook precedence_flow.yml 
 ```
 
 4. Override the deployment tier:
 
 ```bash
-ansible-navigator run precedence_flow.yml -m stdout -e "deployment_tier=production"
+ansible-playbook precedence_flow.yml -e "deployment_tier=production"
 ```
 
 5. Override multiple variables:
 
 ```bash
-ansible-navigator run precedence_flow.yml -m stdout -e "deployment_tier=staging service_port=9090 log_level=debug"
+ansible-playbook precedence_flow.yml -e "deployment_tier=staging service_port=9090 log_level=debug"
 ```
 
 6. Modify the variable file and re-run the playbook.
@@ -280,7 +280,7 @@ Use Ansible facts and registered variables to collect and display system informa
 3. Run the playbook:
 
 ```bash
-ansible-navigator run state_tracking.yml -m stdout
+ansible-playbook state_tracking.yml 
 ```
 
 4. Review the structure of the registered variable in the output.
@@ -349,7 +349,7 @@ Use loops and conditional statements to manage multiple files dynamically.
 3. Run the playbook:
 
 ```bash
-ansible-navigator run conditional_loops.yml -m stdout
+ansible-playbook conditional_loops.yml 
 ```
 
 4. Change the `system_role` variable to `webserver`.
@@ -416,7 +416,7 @@ Use handlers and notifications to trigger actions only when task changes occur.
 3. Run the playbook:
 
 ```bash
-ansible-navigator run event_handlers.yml -m stdout
+ansible-playbook event_handlers.yml 
 ```
 
 4. Run the playbook a second time without modifying the files.

@@ -11,6 +11,11 @@ Use `ansible-navigator` to inspect module documentation, compare module capabili
 
 1. Open a terminal session.
 
+1. Install ansible-navigator, if not already installed:
+```
+pip3 install ansible-navigator ansible-core --user
+```
+
 2. Display all available modules:
 
 ```bash

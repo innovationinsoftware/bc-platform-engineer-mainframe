@@ -108,8 +108,10 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 - [1.3 - Ansible playbook fundamentals](./modules/ansible/labs/playbook-fun)    
 
 ### Day 2
-- [2.1 - Ansible Roles](./modules/ansible/labs/roles/roles_intro.md)    
-- [2.2 - AAP Inventory and Credentials](./modules/ansible/labs/aap-inventory-creds-ad-hoc/index_shared.md)    
+- [2.1 - Ansible Variables](./modules/ansible/labs/vars/index.md)    
+- [2.2 - Ansible Roles](./modules/ansible/labs/roles/roles_intro.md)    
+- [2.3 - Delegate Tasks](./modules/ansible/labs/delegate/index.md)    
+- [2.4 - AAP Inventory and Credentials](./modules/ansible/labs/aap-inventory-creds-ad-hoc/index_shared.md)    
 
 ### Day 3
 - [3.1 - AAP Projects and Jobs](./modules/ansible/labs/aap-projects-templates-jobs/index_shared.md)    

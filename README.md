@@ -115,8 +115,8 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 
 ### Day 3
 - [3.1 - AAP Projects and Jobs](./modules/ansible/labs/aap-projects-templates-jobs/index_shared.md)    
-- [3.2 - Ansible Playbook Error Handling](./modules/ansible/labs/error-handling/error_handling_intro.md)   
-- [3.3 - Ansible Templates](./modules/ansible/labs/templates/templates_intro.md)    
+- [3.2 - Ansible Playbook Error Handling](./modules/ansible/labs/error-handling/index.md)   
+- [3.3 - Ansible Templates](./modules/ansible/labs/templates/index.md)    
 
 ### Day 4
 - [4.1 - Ansible Surveys](./modules/ansible/labs/aap-surveys/index.md)    

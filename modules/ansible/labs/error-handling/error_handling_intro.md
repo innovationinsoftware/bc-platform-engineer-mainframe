@@ -24,12 +24,11 @@ Inside the Windows VM complete the following steps.
 
 1. Launch a new VS Code Window.
 2. Select the Source Control Tab from the toolbar on the left
-3. In the top of the VS Code window click the search bar.
-4. Type: `> clone` and choose `Git: Clone`
-5. Paste the URL to newly created Repo
+4. Click `Clone Repository`
+5. Click `Clone from GitHub`
+5. Select your `ansible-working` repository from the drop-down menu.
 6. In the choose a folder dialog, select your `repos` folder.
 7. Click the `select as Repository Destination` button
-8. In the Visual Studio Code dialog click the `Add to Workspace` button to open the repository in VS Code
 9. In the left Toolbar click the Explorer button.
 
 
@@ -46,21 +45,25 @@ If the report is collected, the playbook should write and edit the file to repla
 
 ### Create Project
 
-In Ansible Automation Platform, create a new project with the following: 
+In Ansible Automation Platform, navigate to **Automation Execution → Projects** and click **Create project**. Fill in the following:
 
 * Name: **automation-dev-[your initials]**
-* Source Control Type: **Git**
-* Source Control URL: **https://github.com/jruels/automation-dev.git**
-* Options: 
+* Source control type: **Git**
+* Source control URL: **https://github.com/jruels/automation-dev.git**
+* Options:
   * **Clean**
   * **Delete**
-  * **Update Revision on Launch**
+  * **Update revision on launch**
+
+Click **Create project**.
 
 
 
-### Create templates
+### Create Job templates
 
-Create a template with the following to simulate a down service: 
+Navigate to **Automation Execution → Templates** and click **Create template → Create job template**.
+
+Create a job template with the following to simulate a down service:
 
 * Name: **service_down-[your initials]**
 * Inventory: **First Inventory-[your initials]**
@@ -68,12 +71,14 @@ Create a template with the following to simulate a down service:
 * Execution Environment: **Default execution environment**
 * Playbook: **labs/error-handling/maint/break_stuff.yml**
 * Credentials: **Linux credentials-[your initials]**
-* Job Tags: **service_down**
-* Privilege Escalation: **Check the box**
+* Job tags: **service_down**
+* Privilege escalation: **Check the box**
+
+Click **Create job template**.
 
 
 
-Create a template with the following to restore the service: 
+Create a job template with the following to restore the service:
 
 * Name: **service_up-[your initials]**
 * Inventory: **First Inventory-[your initials]**
@@ -81,8 +86,10 @@ Create a template with the following to restore the service:
 * Execution Environment: **Default execution environment**
 * Playbook: **labs/error-handling/maint/break_stuff.yml**
 * Credentials: **Linux credentials-[your initials]**
-* Job Tags: **service_up**
-* Privilege Escalation: **Check the box**
+* Job tags: **service_up**
+* Privilege escalation: **Check the box**
+
+Click **Create job template**.
 
 
 
@@ -210,19 +217,21 @@ We can use the **replace** module for this task, and we'll sneak it in between t
 
 ## Create ansible-working project
 
-Now, create a project with your `ansible-working` repository
+Now, create a project with your `ansible-working` repository. Navigate to **Automation Execution → Projects** and click **Create project**:
 
 * Name: **ansible-working-[your initials]**
-* Source Control Type: **Git**
-* Source Control URL: https://github.com/[YOUR_USERNAME]/ansible-working.git
-* Options: 
+* Source control type: **Git**
+* Source control URL: https://github.com/[YOUR_USERNAME]/ansible-working.git
+* Options:
   * **Clean**
   * **Delete**
-  * **Update Revision on Launch**
+  * **Update revision on launch**
 
-## Run the playbook 
+Click **Create project**.
 
-In Automation Platform, create a new template with the following: 
+## Run the playbook
+
+In Automation Platform, navigate to **Automation Execution → Templates** and click **Create template → Create job template**:
 
 * Name: **error_handling-[your initials]**
 * Inventory: **First Inventory-[your initials]**
@@ -231,31 +240,32 @@ In Automation Platform, create a new template with the following:
 * Playbook: **report.yml**
 * Credentials: **Linux credentials-[your initials]**
 
-
-
-Run the `error_handling` job.
-
-You can confirm it ran successfully by reviewing the job output. 
+Click **Create job template**.
 
 
 
-### Simulate a failure 
+Run the `error_handling` job by clicking the **Launch template** button.
 
-Now, let's simulate a down service by running the `service_down` job. 
-
-
-
-After it completes, run the `error_handling` job again and you'll see the output shows that the connection failed. 
+You can confirm it ran successfully by reviewing the job output.
 
 
 
-Finally, run the `service_up` job, and then rerun the `error_handling` job. 
+### Simulate a failure
+
+Now, let's simulate a down service by running the `service_down` job.
 
 
 
-### Bonus 
+After it completes, run the `error_handling` job again and you'll see the output shows that the connection failed.
 
-Use ad-hoc to confirm the `/home/ansible/lab-error-handling/transaction_list` file was created and is formatted correctly. 
+
+
+Finally, run the `service_up` job, and then rerun the `error_handling` job.
+
+
+
+### Bonus
+
+Use ad-hoc to confirm the `/home/ansible/lab-error-handling/transaction_list` file was created and is formatted correctly.
 
 ## Congrats!
-

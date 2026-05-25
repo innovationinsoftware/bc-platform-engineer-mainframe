@@ -1,6 +1,6 @@
 # AAP - Surveys
 
-Demonstrate the use of Ansible Automation controller [survey feature](https://docs.ansible.com/automation-controller/latest/html/userguide/job_templates.html#surveys). Surveys set extra variables for the playbook similar to ‘Prompt for Extra Variables’ does, but in a user-friendly question and answer way. Surveys also allow for validation of user input.
+Demonstrate the use of Ansible Automation controller [survey feature](https://docs.ansible.com/automation-controller/latest/html/userguide/job_templates.html#surveys). Surveys set extra variables for the playbook similar to 'Prompt for Extra Variables' does, but in a user-friendly question and answer way. Surveys also allow for validation of user input.
 
 
 
@@ -31,46 +31,44 @@ A playbook to ensure Apache is installed and started. The playbook is `apache_in
 ```
 
 
-To confirm the **Ansible Workshop Examples** project has the latest revision of our GitHub repository click **sync**
+Go to **Automation Execution → Projects**, and confirm the **Ansible Workshop Examples-[your initials]** project has the latest revision of our GitHub repository by clicking the **Sync project** icon.
 
-After starting the sync job, go to the **Jobs** view: there is a new job for the update of the Git repository.
+After starting the sync job, go to **Automation Execution → Jobs**: there is a new job for the update of the Git repository.
 
 
 ## Create a new Job Template
 
-Go to the **Resources -> Templates**, click the **Add** button and choose **Add job template**.
+Go to **Automation Execution → Templates**, click the **Create template** button and choose **Create job template**.
 
 Create a new Job Template for installing Apache.
 
 Fill in the following: 
 
-* **Name**: Install Apache-[your_initials]
+* **Name**: Install Apache-[your initials]
 
 * **Job Type**: Run
 
-* **Inventory**: First Inventory-[your_initials]
+* **Inventory**: First Inventory-[your initials]
 
-* **Project**: Ansible Workshop Examples-[your_initials]
+* **Project**: Ansible Workshop Examples-[your initials]
 
-* **Execution Environment**: Default
+* **Execution Environment**: Default execution environment
 
-* **Playbook**: `/rhel/apache/apache_install.yml`
+* **Playbook**: `rhel/apache/apache_install.yml`
 
-* **Credentials**: Linux credentials-[your_initials]
+* **Credentials**: Linux credentials-[your initials]
 
-* **Options**: The tasks need to run as `root` so check **Privilege Escalation**
+* **Options**: The tasks need to run as `root` so check **Privilege escalation**
 
-* Click **Save**
+* Click **Create job template**
 
 
 
-You can start the job by directly clicking the blue **Launch** button, or by clicking on the rocket in the Job Templates overview. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real-time:
+You can start the job by directly clicking the blue **Launch template** button, or by clicking on the rocket icon in the Templates list view. After launching the Job Template, you are automatically brought to the job overview where you can follow the playbook execution in real-time.
 
 
 
 If everything is configured successfully, you should see that Apache was installed. 
-
-![image-20220223220129727](images/image-20220223220129727.png)
 
 
 
@@ -78,7 +76,7 @@ If everything is configured successfully, you should see that Apache was install
 
 Time for a little challenge:
 
-- Use an ad-hoc command on the centos host to make sure Apache has been installed and is running.
+- Use an ad-hoc command on your managed hosts to make sure Apache has been installed and is running.
 
 You have already been through all the steps needed, so try this for yourself.
 
@@ -89,7 +87,7 @@ You have already been through all the steps needed, so try this for yourself.
 <details>
   <summary>Click here to expand</summary>
 
-Go to Resources → Inventories → First Inventory-[your_initials]
+Go to **Automation Execution → Infrastructure → Inventories → First Inventory-[your initials]**
 
 
 
@@ -105,7 +103,7 @@ Within the Execution Environment window, select Default execution environment an
 
 
 
-Within the Machine Credential window, select Linux Server credentials-[your_initials] and click Launch.
+Within the Machine Credential window, select Linux credentials-[your initials] and click Launch.
 
 </details>
 
@@ -113,11 +111,11 @@ Within the Machine Credential window, select Linux Server credentials-[your_init
 
 ## Extend template with a Survey
 
-You have installed Apache on your nodes in the job you just ran. Now we’re going to extend this:
+You have installed Apache on your nodes in the job you just ran. Now we're going to extend this:
 
 - Use a proper role that has a Jinja2 template to deploy an `index.html` file.
-- Create a job **Template-[your_initials]** with a survey to collect the values for the `index.html` template.
-- Launch the job **Template-[your_initials]**
+- Create a job **Template-[your initials]** with a survey to collect the values for the `index.html` template.
+- Launch the job **Template-[your initials]**
 
 Additionally, the role will make sure that the Apache configuration is properly set up for this exercise.
 
@@ -155,7 +153,7 @@ What is this playbook doing? It creates a file (**dest**) on the managed hosts f
 
 The role deploys a static configuration for Apache. This is to make sure that all changes done in the previous chapters are overwritten and your examples work properly.
 
-Because the playbook and role is located in the same GitHub repo as the `apache_install.yml` playbook you don’t have to configure a new project for this exercise.
+Because the playbook and role is located in the same GitHub repo as the `apache_install.yml` playbook you don't have to configure a new project for this exercise.
 
 
 
@@ -165,23 +163,23 @@ Now you create a new Template that includes a survey.
 
 #### Create Template
 
-Go to **Resources → Templates**, click the **Add** button and choose **Add job template**
+Go to **Automation Execution → Templates**, click the **Create template** button and choose **Create job template**
 
 Fill out the following information:
 
-* **Name**: Create index.html-[your_initials]
+* **Name**: Create index.html-[your initials]
 * **Job Type**: Run
-* **Inventory**: First Inventory-[your_initials]
-* **Project**: Ansible Workshop Examples-[your_initials]
-* **Execution Environment**: Default
+* **Inventory**: First Inventory-[your initials]
+* **Project**: Ansible Workshop Examples-[your initials]
+* **Execution Environment**: Default execution environment
 * **Playbook**: rhel/apache/apache_role_install.yml
-* **Credentials**:  Linux Server credentials-[your_initials]
+* **Credentials**: Linux credentials-[your initials]
 * **Limit**: web
-* **Options**: Privilege Escalation
+* **Options**: Privilege escalation
 
 
 
-* Click **Save**
+* Click **Create job template**
 
 > **Warning**: Do not run the template yet!
 
@@ -189,43 +187,43 @@ Fill out the following information:
 
 #### Add the Survey 
 
-In the Template, click the **Survey** tab at the top, and click the **Add** button. 
+In the Template, click the **Survey** tab at the top, and click the **Create survey question** button. 
 
 Fill out the form: 
 
 * **Question**: First Line
 
-* **Answer Variable Name**: first_line
+* **Answer variable name**: first_line
 
-* **Answer Type**: Text
-
-
-
-* Click **Save**
-* Click the **Add** button 
+* **Answer type**: Text
 
 
 
-In the same fashion add a second **Survey Question**
+* Click **Create survey question**
+* Click the **Create survey question** button again
+
+
+
+In the same fashion add a second survey question:
 
 * **Question**: Second Line
 
-* **Answer Variable Name**: second_line
+* **Answer variable name**: second_line
 
-* **Answer Type**: Text
+* **Answer type**: Text
 
 
 
-* Click **Save**
-* Click the toggle to turn the Survey questions to **Enabled**
+* Click **Create survey question**
+* Click the **Survey enabled** toggle to enable the survey
 
 
 
 ### Launch the Template
 
-Now launch **Create index.html-[your_initials]** job template by selecting the **Details** tab and clicking the **Launch** button.
+Now launch **Create index.html-[your initials]** job template by clicking the **Launch template** button.
 
-Before the actual launch, the survey will ask for **First Line** and **Second Line**. Fill in some text and click **Next**. The **Preview** window shows the values
+Before the actual launch, the survey will ask for **First Line** and **Second Line**. Fill in some text and click **Next**. The **Preview** window shows the values.
 
 
  If all is good run the Job by clicking **Launch**.
@@ -246,6 +244,5 @@ Note how the two variables were used by the playbook to create the content of th
 
 
 ## Congrats! 
-
 
 

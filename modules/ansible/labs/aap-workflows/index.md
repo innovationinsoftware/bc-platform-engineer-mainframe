@@ -13,7 +13,7 @@ And the workflows are not even limited to Job Templates, but can also include pr
 
 This enables new applications for Ansible automation controller: different Job Templates can build upon each other. E.g. the networking team creates playbooks with their own content, in their own Git repository, and even targeting their own inventory, while the operations team also has their own repos, playbooks, and inventory.
 
-In this lab, you’ll learn how to set up a workflow.
+In this lab, you'll learn how to set up a workflow.
 
 ## Guide
 
@@ -48,73 +48,73 @@ To make things easier for you, everything needed already exists in a GitHub repo
 
 First, you need to set up the Git repository as a Project, just as you normally would.
 
-Within **Resources** -> **Projects**, click the **Add** button to create a project for the web operations team. Fill out the form as follows:
+Go to **Automation Execution → Projects**, click the **Create project** button to create a project for the web operations team. Fill out the form as follows:
 
 | Parameter                        | Value                                             |
 | -------------------------------- | ------------------------------------------------- |
-| Name                             | Webops Git Repo-[your initials]                                   |
+| Name                             | Webops Git Repo-[your initials]                   |
 | Organization                     | Default                                           |
-| Execution Environment            | Default execution environment                         |
-| Source Control Credential Type   | Git                                               |
-| Source Control URL               | `https://github.com/jruels/workshop-examples.git` |
-| Source Control Branch/Tag/Commit | `webops`                                          |
-| Options                          | ✓ Clean✓ Delete✓ Update Revision on Launch        |
+| Execution environment            | Default execution environment                     |
+| Source control type              | Git                                               |
+| Source control URL               | `https://github.com/jruels/workshop-examples.git` |
+| Source control branch/tag/commit | `webops`                                          |
+| Options                          | ✓ Clean ✓ Delete ✓ Update revision on launch      |
 
-Click **Save**
+Click **Create project**
 
 ------
 
-Within **Resources** -> **Projects**, click the **Add** button to create a project for the web developers team. Fill out the form as follows:
+Go to **Automation Execution → Projects**, click the **Create project** button to create a project for the web developers team. Fill out the form as follows:
 
 | Parameter                        | Value                                             |
 | -------------------------------- | ------------------------------------------------- |
-| Name                             | Webdev Git Repo-[your initials]                                   |
+| Name                             | Webdev Git Repo-[your initials]                   |
 | Organization                     | Default                                           |
-| Default Execution Environment    | Default execution environment                         |
-| Source Control Credential Type   | Git                                               |
-| Source Control URL               | `https://github.com/jruels/workshop-examples.git` |
-| Source Control Branch/Tag/Commit | `webdev`                                          |
-| Options                          | ✓ Clean✓ Delete✓ Update Revision on Launch        |
+| Execution environment            | Default execution environment                     |
+| Source control type              | Git                                               |
+| Source control URL               | `https://github.com/jruels/workshop-examples.git` |
+| Source control branch/tag/commit | `webdev`                                          |
+| Options                          | ✓ Clean ✓ Delete ✓ Update revision on launch      |
 
-Click **Save**
+Click **Create project**
 
 ### Set up job templates
 
-Now you have to create two Job Templates like you would for “normal” Jobs.
+Now you have to create two Job Templates like you would for "normal" Jobs.
 
-Within **Resources** -> **Templates**, click the **Add** button and choose **Add job template**:
+Go to **Automation Execution → Templates**, click the **Create template** button and choose **Create job template**:
 
 | Parameter             | Value                                |
 | --------------------- | ------------------------------------ |
-| Name                  | Web App Deploy-[your initials]                       |
-| Job Type              | Run                                  |
-| Inventory             | First inventory-[your initials]                      |
-| Project               | Webops Git Repo-[your initials]                      |
-| Execution Environment | Default execution environment        |
+| Name                  | Web App Deploy-[your initials]       |
+| Job type              | Run                                  |
+| Inventory             | First Inventory-[your initials]      |
+| Project               | Webops Git Repo-[your initials]      |
+| Execution environment | Default execution environment        |
 | Playbook              | `rhel/webops/web_infrastructure.yml` |
-| Credentials           | Linux credentials-[your initials]                    |
+| Credentials           | Linux credentials-[your initials]    |
 | Limit                 | web                                  |
-| Options               | ✓ Privilege Escalation               |
+| Options               | ✓ Privilege escalation               |
 
-Click **Save**
+Click **Create job template**
 
 ------
 
-Within **Resources** -> **Templates**, click the **Add** button and choose **Add job template**:
+Go to **Automation Execution → Templates**, click the **Create template** button and choose **Create job template**:
 
 | Parameter             | Value                              |
 | --------------------- | ---------------------------------- |
-| Name                  | Node.js Deploy-[your initials]                     |
-| Job Type              | Run                                |
-| Inventory             | First inventory-[your initials]                    |
-| Project               | Webdev Git Repo-[your initials]                    |
-| Execution Environment | Default execution environment      |
+| Name                  | Node.js Deploy-[your initials]     |
+| Job type              | Run                                |
+| Inventory             | First Inventory-[your initials]    |
+| Project               | Webdev Git Repo-[your initials]    |
+| Execution environment | Default execution environment      |
 | Playbook              | `rhel/webdev/install_node_app.yml` |
-| Credentials           | Linux credentials-[your initials]                  |
+| Credentials           | Linux credentials-[your initials]  |
 | Limit                 | web                                |
-| Options               | ✓ Privilege Escalation             |
+| Options               | ✓ Privilege escalation             |
 
-Click **Save**
+Click **Create job template**
 
 > **Tip**
 >
@@ -124,61 +124,61 @@ Click **Save**
 
 ### Set up the workflow
 
-Workflows are configured in the **Templates** view, you might have noticed you can choose between **Add job template** and **Add workflow template** when adding a template.
+Workflows are configured in the **Templates** view, you might have noticed you can choose between **Create job template** and **Create workflow job template** when creating a template.
 
-Within **Resources** -> **Templates**, click the **Add** button and choose **Add workflow template**:
+Go to **Automation Execution → Templates**, click the **Create template** button and choose **Create workflow job template**:
 
-| **Parameter** | Value                |
-| ------------- | -------------------- |
+| **Parameter** | Value                                |
+| ------------- | ------------------------------------ |
 | Name          | Deploy Webapp Server-[your initials] |
-| Organization  | Default              |
+| Organization  | Default                              |
 
-Click **Save**
+Click **Create workflow job template**
 
-After saving the template the **Workflow Visualizer** opens to allow you to build a workflow. You can later open the **Workflow Visualizer** again by using the button on the template details page and selecting **Visualizer** from the menu.
+After saving the template, click the **View workflow visualizer** link on the template details page to open the Workflow Visualizer.
 
-![start](https://aap2.demoredhat.com/exercises/ansible_rhel/2.6-workflows/images/start.png)
+The Workflow Visualizer displays a **Start** node in an otherwise empty canvas. The toolbar at the top contains **Save**, **Add step**, and **Launch workflow** buttons.
 
-Click on the **Start** button, an **Add Node** window opens. Assign an action to the node, via node type by selecting **Job Template**.
+Click **Add step** to open the node configuration panel.
 
-Select the **Web App Deploy** job template and click **Save**.
+In the **Node details** step, fill in:
 
-![Add Node](https://aap2.demoredhat.com/exercises/ansible_rhel/2.6-workflows/images/add_node.png)
+- **Node type**: Job Template
+- **Job template**: Select **Web App Deploy-[your initials]**
 
-A new node is shown, connected to the **START** button with the name of the job template. Hover the mouse pointer over the node, you’ll see options to add a node (+), view node details (i), edit the node (pencil), link to an available node (chain), and delete the node (trash bin).
+Click **Next**, review the summary, then click **Finish**.
 
-![workflow node](https://aap2.demoredhat.com/exercises/ansible_rhel/2.6-workflows/images/workflow_node.png)
+A new node appears in the canvas connected to the **Start** node with a **Run always** edge.
 
-Hover over the node and click the (+) sign to add a new node.
+To add the second node, hover over the **Web App Deploy-[your initials]** node. Click the **⋮** (three-dot) icon that appears on the node, then click **Add step and link** from the menu.
 
-- For the **Run Type** select **On Success** (default) and click **Next**.
+In the **Node details** step, fill in:
 
-> **TIP**: The run type allows for more complex workflows. You could lay out different execution paths for successful and for failed playbook runs.
+- **Status**: Run on success
+- **Node type**: Job Template
+- **Job template**: Select **Node.js Deploy-[your initials]**
 
-- For **Node Type** select **Job Template** (default) and choose the **Node.js Deploy-[your initials]** job template. Click **Save**.
+Click **Next**, review the summary, then click **Finish**.
 
-  ![Add Nodejs](https://aap2.demoredhat.com/exercises/ansible_rhel/2.6-workflows/images/add_node_nodejs.png)
-
-Click **Save** in the top right corner of the **Visualizier** view.
+Click **Save** in the toolbar at the top of the Workflow Visualizer to save the workflow.
 
 
 
 ### Launch workflow
 
-From within the **Deploy Webapp Server** Details page, **Launch** the workflow.
-
-![launch](https://aap2.demoredhat.com/exercises/ansible_rhel/2.6-workflows/images/launch.png)
+From within the **Deploy Webapp Server-[your initials]** details page, click **Launch template** to launch the workflow.
 
 
 
-Note how the workflow run is shown in the Jobs > Deploy Webapp Server Output. In contrast to a normal job template job execution, there is no playbook output when the job completes but the time to complete the job is displayed. If you want to look at the actual playbook run, hover over the node you wish to see the details on and click it. Within the Details view of the job, select the **Output** menu to see the playbook output. If you want to get back the **Output** view of the **Deploy WebappServer-[your initials]** workflow, under **Views -> Jobs -> XX - Deploy Webapp Server-[your initials]** will take you back to the Output overview.
-
-NOTE: Where `XX` is the number of the job run.
-
-![jobs view of workflow](https://aap2.demoredhat.com/exercises/ansible_rhel/2.6-workflows/images/job_workflow.png)
+Note how the workflow run is shown in **Automation Execution → Jobs**. In contrast to a normal job template job execution, there is no playbook output when the job completes, but the time to complete the job is displayed. If you want to look at the actual playbook run, click on the node you wish to see the details for. To return to the workflow output view, go to **Automation Execution → Jobs** and click the workflow job **Deploy Webapp Server-[your initials]**.
 
 ## Challenge Lab: Recovery workflow
 Using what you learned in this lab, create a workflow with three jobs (JobA-[your initials], JobB-[your initials], JobC-[your initials]). If JobA is successful, JobB runs; if JobA fails, JobC runs.
+
+To create the branching workflow:
+1. Add JobA using **Add step**
+2. Hover over JobA, click **⋮**, then **Add step and link** — set **Status** to **Run on success** and select JobB
+3. Hover over JobA again, click **⋮**, then **Add step and link** — set **Status** to **Run on fail** and select JobC
 
 
 ## Congrats!

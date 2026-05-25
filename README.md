@@ -122,3 +122,5 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 - [4.1 - Ansible Surveys](./modules/ansible/labs/aap-surveys/index.md)    
 - [4.2 - Ansible Vault](./modules/ansible/labs/ansible-vault/vault_intro.md)    
 - [4.3 - RBAC](./modules/ansible/labs/aap-rbac/index.md)    
+- [4.4 - AAP Workflows](./modules/ansible/labs/aap-workflows/index.md)    
+- [4.5 - Develop an Ansible module](./modules/ansible/labs/gh_module/index.md)    

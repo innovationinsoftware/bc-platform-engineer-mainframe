@@ -8,35 +8,31 @@ You have already learned how Ansible automation controller separates credentials
 
 There are three types of automation controller users:
 
-- **Normal User**: Have read and write access limited to the inventory and projects for which that user has been granted the appropriate roles and privileges.
-- **System Auditor**: Auditors implicitly inherit the read-only capability for all objects within the automation controller environment.
-- **System Administrator**: Has admin, read, and write privileges over the entire automation controller installation.
+- **Normal user**: Have read and write access limited to the inventory and projects for which that user has been granted the appropriate roles and privileges.
+- **Ansible Automation Platform Auditor**: Has read-only access to all resources within the environment.
+- **Ansible Automation Platform Administrator**: Has full system administration privileges, including comprehensive read and write access across the entire installation.
 
 
 
-Let’s create a user:
+Let's create a user:
 
-In the automation controller menu under **Access** click **Users**
+In the automation controller menu under **Access Management** click **Users**
 
-Click the **Add** button
+Click the **Create user** button
 
 Fill in the values for the new user:
 
-- **First Name**: Werner-[your_initials]
-- **Last Name**: Web-[your_initials]
-- **Email**: wweb-[your_initials]@example.com
-
-* **Username**: wweb-[your_initials]
-* **Password**: ansible
-
-* **Confirm Password**: ansible 
-
-* **User Type**: Normal User
-* **Organization**: Default 
+- **Username**: wweb-[your initials]
+- **Password**: ansible
+- **Confirm password**: ansible
+- **First name**: Werner-[your initials]
+- **Last name**: Web-[your initials]
+- **Email**: wweb-[your initials]@example.com
+- **User type**: Normal user
 
 
 
-* Click **Save**
+* Click **Create user**
 
 
 
@@ -46,54 +42,49 @@ A Team is a subdivision of an organization with associated users, projects, cred
 
 Create a Team:
 
-In the menu go to **Access → Teams**
+In the menu go to **Access Management → Teams**
 
-Click the **Add** button and create a team named `Web Content-[your_initials]` within the `Default` Organization.
+Click the **Create team** button and create a team named `Web Content-[your initials]` within the `Default` Organization.
 
-- Click **Save**
+- Click **Create team**
 
 Add a user to the team:
 
-- Click on the team `Web Content-[your_initials]` and click the **Access** tab and click **Add**.
-- Within the **Select a Resource Type** window, click on the **Users** resource type and click **Next**.
-- Within the **Select Items from List**, select the checkbox next to the `wweb-[your_initials]` user and click **Next**.
-- Within the **Select Roles to Apply**, select **Member** as the role to apply to the `wweb-[your_initials]` user.
+- Click on the team `Web Content-[your initials]` and click the **Users** tab.
+- Click **Assign users**.
+- Select the checkbox next to the `wweb-[your initials]` user.
+- Click **Assign users**.
 
-Click **Save**.
-
-Permissions allow to read, modify, and administer projects, inventories, and other automation controller elements. Permissions can be set for different resources.
+Permissions allow users to read, modify, and administer projects, inventories, and other automation controller elements. Permissions can be set for different resources.
 
 
 
 ## Granting permissions
 
-To allow users or teams to actually do something, you have to set permissions. The user **wweb-[your_initials]** should only be allowed to modify content of the assigned webservers.
+To allow users or teams to actually do something, you have to set permissions. The user **wweb-[your initials]** should only be allowed to modify content of the assigned webservers.
 
-Add the permission to use the `Create index.html-[your_initials]` template:
+Add the permission to use the `Create index.html-[your initials]` template:
 
-- Within **Resources** -> **Templates**, select `Create index.html-[your_initials]`.
-- Select **Access** tab from the menu and click **Add**.
-- Within the **Select a Resource Type** window, click on the **Users** resource type and click **Next**.
-- Within the **Select Items from List**, select the checkbox next to the `wweb-[your_initials]` user and click **Next**.
-- Within the **Select Roles to Apply**, select **Read** and **Execute** as the roles to apply to the `wweb-[your_initials]` user.
-- Click **Save**
-
-
+- Go to **Automation Execution → Templates** and select `Create index.html-[your initials]`.
+- Click the **User Access** tab and click **Assign users**.
+- **Step 1 - Select user(s)**: Select the checkbox next to `wweb-[your initials]` and click **Next**.
+- **Step 2 - Select roles to apply**: Select **JobTemplate Execute** and click **Next**.
+- **Step 3 - Review**: Confirm the user and role are correct, then click **Finish**.
 
 
 
 ## Test permissions
 
-Now log out of Automation Controller’s web UI and in again as the **wweb-[your_initials]** user.
+Now log out of Automation Controller's web UI and log back in as the **wweb-[your initials]** user.
 
-- Go to the **Templates** view, you should notice for **wweb** only the `Create index.html-[your_initials]` template is listed. He is allowed to view and launch, but not to edit the Template (no Edit button available).
+- Go to **Automation Execution → Templates**. You should notice that for **wweb** only the `Create index.html-[your initials]` template is listed. The user is allowed to view and launch, but not to edit the Template (no Edit button available).
 - Run the Job Template by clicking the rocket icon. Enter the values for the survey questions and launch the job.
-- In the following **Jobs** view have a good look around, note that there were changes to the host (as expected).
+- Go to **Automation Execution → Jobs** to watch the job run and review the output.
 
-Check the result: execute `curl` again  to pull the content of the webserver on `Server 1` :
+Check the result by running `curl` against the web server on `Server 1`:
 
 ```bash
-#> curl http://<Server 2 IP>
+#> curl http://<Server 1 IP>
 ```
 
 You enabled a restricted user to run an Ansible playbook
@@ -109,7 +100,6 @@ This capability is one of the main strengths of Ansible automation controller.
 
 
 ## Congrats! 
-
 
 
 

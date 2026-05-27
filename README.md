@@ -124,3 +124,6 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 - [4.3 - RBAC](./modules/ansible/labs/aap-rbac/index.md)    
 - [4.4 - AAP Workflows](./modules/ansible/labs/aap-workflows/index.md)    
 - [4.5 - Develop an Ansible module](./modules/ansible/labs/gh_module/index.md)    
+
+### Day 5
+- [Ansible Bonus labs](./modules/ansible/labs/bonus)   

@@ -149,3 +149,27 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 ### Day 4: Networking and Projects
 - [4.1 - Python Socket Programming Basics](./modules/python/labs/4.1-python-sockets.md)
 - [4.2 - Python OOP Web Server Challenge](./modules/python/labs/4.2-python-project.md)
+
+## Scripting APIs Labs
+
+### Day 1: REST & Flask
+- [1.1 - Python REST API](./modules/Scripting-API/1.1-python-rest-api.md)
+- [1.2 - Python Flask](./modules/Scripting-API/1.2-python-flask.md)
+
+### Day 2: API Keys, JWT, HTTPS
+- [2.1 - Python API Keys](./modules/Scripting-API/2.1-python-api-keys.md)
+- [2.2 - Python JWT](./modules/Scripting-API/2.2-python-jwt.md)
+- [2.3 - Python API HTTPS](./modules/Scripting-API/2.3-python-api-https.md)
+- [2.4 - Sample Solution](./modules/Scripting-API/2.4-sample-solution.py)
+
+### Day 3: SOAP & Jinja2
+- [3.1 - Python SOAP](./modules/Scripting-API/3.1-python-soap.md)
+- [3.2 - Python Jinja2](./modules/Scripting-API/3.2-python-jinja2.md)
+
+### Day 4: API Rating, Reverse Proxy, OAuth
+- [4.1 - Python API Rating](./modules/Scripting-API/4.1-python-api-rating.md)
+- [4.2 - Python Reverse Proxy](./modules/Scripting-API/4.2-python-reverse-proxy.md)
+- [4.3 - Python API OAuth](./modules/Scripting-API/4.3-python-api-oauth.md)
+
+### Day 5: API Project
+[5.0 - Python API Project](./modules/Scripting-API/5.0-python-api-project.md)

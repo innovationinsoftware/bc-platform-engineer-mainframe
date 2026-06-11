@@ -5,12 +5,12 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 # Lab environment details
 - [Lab environment details](https://docs.google.com/spreadsheets/d/13qzc0L0Jukv1t_A1KDkx9uJLVLyp9-z7c0z7ytpf6a0/edit?usp=sharing)
 
-## Week 1 - Scrum & DevOps  
+## Scrum & DevOps  
 - [Scrum slides](./modules/Scrum/Basic-Scrum.pdf)  
 - [Scrum questions](./modules/Scrum/40-questions-about-Scrum.docx)  
 - [DevOps](./modules/DevOps/)  
 
-## Week 2 - VCS & Linux 
+## VCS & Linux 
 ## VCS Labs
 
 ### Day 1: Git Basics
@@ -67,7 +67,7 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 - [5.3 - SELinux Basics](./modules/linux/labs/5.3-selinux-basics.md)
 - [5.4 - System Administration Tool](./modules/linux/labs/5.4-sys-admin-tool.md)
 
-## Week 3 - IaC
+## Infrastructure-as-Code
 ## Terraform Labs
 
 ### Day 1: Terraform Basics
@@ -150,7 +150,32 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 - [4.1 - Python Socket Programming Basics](./modules/python/labs/4.1-python-sockets.md)
 - [4.2 - Python OOP Web Server Challenge](./modules/python/labs/4.2-python-project.md)
 
-## Infrastructure Automation (Days 23–27)
+
+## Scripting APIs Labs
+
+### Day 1: REST & Flask
+- [1.1 - Python REST API](./modules/Scripting-API/1.1-python-rest-api.md)
+- [1.2 - Python Flask](./modules/Scripting-API/1.2-python-flask.md)
+
+### Day 2: API Keys, JWT, HTTPS
+- [2.1 - Python API Keys](./modules/Scripting-API/2.1-python-api-keys.md)
+- [2.2 - Python JWT](./modules/Scripting-API/2.2-python-jwt.md)
+- [2.3 - Python API HTTPS](./modules/Scripting-API/2.3-python-api-https.md)
+- [2.4 - Sample Solution](./modules/Scripting-API/2.4-sample-solution.py)
+
+### Day 3: SOAP & Jinja2
+- [3.1 - Python SOAP](./modules/Scripting-API/3.1-python-soap.md)
+- [3.2 - Python Jinja2](./modules/Scripting-API/3.2-python-jinja2.md)
+
+### Day 4: API Rating, Reverse Proxy, OAuth
+- [4.1 - Python API Rating](./modules/Scripting-API/4.1-python-api-rating.md)
+- [4.2 - Python Reverse Proxy](./modules/Scripting-API/4.2-python-reverse-proxy.md)
+- [4.3 - Python API OAuth](./modules/Scripting-API/4.3-python-api-oauth.md)
+
+### Day 5: API Project
+[5.0 - Python API Project](./modules/Scripting-API/5.0-python-api-project.md)
+
+## Infrastructure Automation
 
 ### Day 23: GitHub Actions CI/CD
  - [1.1 - Introduction to GitHub Actions Workflows](./modules/InfraAutomation/labs/1.1-github-workflow.md)
@@ -177,26 +202,3 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
  - [5.1 - Blue/Green Deployments with Argo Rollouts](./modules/InfraAutomation/labs/5.1-argocd-blue-green.md)
  - [5.2 - Hybrid Cloud Disaster Recovery with Multi-Region Redundancy](./modules/InfraAutomation/labs/5.2-data-center-dr.md)
 
-## Scripting APIs Labs
-
-### Day 1: REST & Flask
-- [1.1 - Python REST API](./modules/Scripting-API/1.1-python-rest-api.md)
-- [1.2 - Python Flask](./modules/Scripting-API/1.2-python-flask.md)
-
-### Day 2: API Keys, JWT, HTTPS
-- [2.1 - Python API Keys](./modules/Scripting-API/2.1-python-api-keys.md)
-- [2.2 - Python JWT](./modules/Scripting-API/2.2-python-jwt.md)
-- [2.3 - Python API HTTPS](./modules/Scripting-API/2.3-python-api-https.md)
-- [2.4 - Sample Solution](./modules/Scripting-API/2.4-sample-solution.py)
-
-### Day 3: SOAP & Jinja2
-- [3.1 - Python SOAP](./modules/Scripting-API/3.1-python-soap.md)
-- [3.2 - Python Jinja2](./modules/Scripting-API/3.2-python-jinja2.md)
-
-### Day 4: API Rating, Reverse Proxy, OAuth
-- [4.1 - Python API Rating](./modules/Scripting-API/4.1-python-api-rating.md)
-- [4.2 - Python Reverse Proxy](./modules/Scripting-API/4.2-python-reverse-proxy.md)
-- [4.3 - Python API OAuth](./modules/Scripting-API/4.3-python-api-oauth.md)
-
-### Day 5: API Project
-[5.0 - Python API Project](./modules/Scripting-API/5.0-python-api-project.md)

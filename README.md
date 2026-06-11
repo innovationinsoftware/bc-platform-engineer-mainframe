@@ -149,3 +149,30 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 ### Day 4: Networking and Projects
 - [4.1 - Python Socket Programming Basics](./modules/python/labs/4.1-python-sockets.md)
 - [4.2 - Python OOP Web Server Challenge](./modules/python/labs/4.2-python-project.md)
+
+## Infrastructure Automation (Days 23–27)
+
+### Day 23: GitHub Actions CI/CD
+ - [1.1 - Introduction to GitHub Actions Workflows](./modules/InfraAutomation/labs/1.1-github-workflow.md)
+ - [1.2 - GitHub Actions Docker Build and Push](./modules/InfraAutomation/labs/1.2-github-workflow-docker.md)
+ - [1.3 - GitHub Actions CI/CD Pipeline Enhancements](./modules/InfraAutomation/labs/1.3-github-workflow-enhancements.md)
+ - [1.4 - GitHub OIDC Authentication for AWS](./modules/InfraAutomation/labs/1.4-github-oidc.md)
+
+### Day 24: Jenkins and Deployment
+ - [2.1 - Self-Hosted CI/CD with Jenkins](./modules/InfraAutomation/labs/2.1-jenkins-docker.md)
+ - [2.2 - Manual Deployment to AWS EC2](./modules/InfraAutomation/labs/2.2-manual-deployment.md)
+ - [2.3 - Ansible Configuration Management](./modules/InfraAutomation/labs/2.3-ansible-deployment.md)
+
+### Day 25: Infrastructure as Code with Packer and Terraform
+ - [3.1 - Terraform Multi-AZ Infrastructure Automation](./modules/InfraAutomation/labs/3.1-terraform-infra.md)
+ - [3.2 - Building Golden AMIs with Packer and GitHub Actions](./modules/InfraAutomation/labs/3.2-packer-golden-ami.md)
+ - [3.3 - Terraform Infrastructure with Custom AMI](./modules/InfraAutomation/labs/3.3-terraform-custom-ami.md)
+
+### Day 26: Kubernetes and GitOps
+ - [4.1 - Multi-Environment Zero-Downtime Deployments](./modules/InfraAutomation/labs/4.1-zero-downtime-deployment.md)
+ - [4.2 - GitOps with Kubernetes and Argo CD](./modules/InfraAutomation/labs/4.2-kubernetes-argocd.md)
+ - [4.3 - GitOps Automation with Version Injection](./modules/InfraAutomation/labs/4.3-kubernetes-automations.md)
+
+### Day 27: Advanced GitOps and Disaster Recovery
+ - [5.1 - Blue/Green Deployments with Argo Rollouts](./modules/InfraAutomation/labs/5.1-argocd-blue-green.md)
+ - [5.2 - Hybrid Cloud Disaster Recovery with Multi-Region Redundancy](./modules/InfraAutomation/labs/5.2-data-center-dr.md)

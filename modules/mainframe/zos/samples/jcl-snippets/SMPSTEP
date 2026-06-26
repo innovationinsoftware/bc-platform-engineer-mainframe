@@ -1,0 +1,14 @@
+//*********************************************************************
+//* JOB STEP THAT EXECUTES GIMSMP.
+//* COPY THIS MEMBER INTO YOUR JOB, CHANGE THE COMMENTS, AND CHANGE
+//* HLQ IF NEEDED.
+//*********************************************************************
+//SMPSTEP  EXEC PGM=GIMSMP
+//SMPCSI   DD DSN=&HLQ..GLOBAL.CSI,DISP=SHR
+//SMPLOG   DD SYSOUT=*
+//SMPOUT   DD SYSOUT=*
+//SMPRPT   DD SYSOUT=*
+//SMPLIST  DD SYSOUT=*
+//SMPPTS   DD DSN=&HLQ..SMPPTS,DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SMPCNTL  DD *,SYMBOLS=JCLONLY

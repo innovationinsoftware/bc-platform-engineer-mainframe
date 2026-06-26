@@ -1,0 +1,9 @@
+/* REXX */                                                              00010000
+/* Recursive internal function execution... */                          00020000
+arg x                                                                   00021000
+say x'! =' factorial(x)                                                 00022000
+exit 0                                                                  00023000
+factorial: procedure   /* Calculate factorial by    */                  00030000
+arg n                /*   recursive invocation.   */                    00040000
+  if n=0 then return 1                                                  00050000
+  return  factorial(n-1) * n                                            00060000

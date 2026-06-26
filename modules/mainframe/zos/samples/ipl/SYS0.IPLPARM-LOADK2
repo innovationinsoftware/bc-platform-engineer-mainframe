@@ -1,0 +1,9 @@
+*---+----1----+----2----+----3----+----4----+----5----+----6----+----7
+IODF     00 PROV     DEFAULT  00
+INITSQA        0001M
+SYSCAT   OPEVS1143CCATALOG.VS01.MASTER
+IEASYM   (00,K2)
+SYSPLEX  LOCAL
+PARMLIB  K2.PARMLIB                                   USRVS1
+PARMLIB  SYS1.PARMLIB
+PARMLIB  SYS1.PARMLIB.INSTALL

@@ -1,0 +1,4 @@
+//IBMUSER1  JOB ,'DO NOTHING',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             NOTIFY=&SYSUID
+//NADA      EXEC PGM=IEFBR14

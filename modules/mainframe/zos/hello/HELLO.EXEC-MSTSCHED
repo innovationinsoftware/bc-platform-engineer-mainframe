@@ -1,0 +1,48 @@
+/* REXX */
+/********************************************************************/
+/* This is part of the "fake ipl" exercise for Platform Engineer    */
+/* training.                                                        */
+/* Simulates Master Scheduler by looking for relevant members       */
+/* in the parmlibs whose dsns are passed in as the first argument.  */
+/* Performs some crude checking to see that students have entered   */
+/* a few of the most common keywords in those members.              */
+/* Submits a job that displays fake IPL messages.                   */
+/********************************************************************/
+parse arg parmlib suffix
+if dsname = "" | suffix = "" then do
+  say "Usage: mstsched parmlib suffix"
+  exit 12
+end
+
+say "parmlib value received:" parmlib
+say "suffix value received:" suffix
+
+clean_suffix = strip(translate(suffix))
+ieasym_member = 'IEASYM'||clean_suffix
+ieasys_member = 'IEASYS'||clean_suffix
+
+ieasym_found = 0
+ieasys_found = 0
+
+tmp=OUTTRAP(dsn_mem.)
+/* "LISTDS 'HL.PARMLIB' MEMBERS" */
+"LISTDS '"parmlib"' MEMBERS"
+tmp=OUTTRAP(OFF)
+
+do i=7 until i >= dsn_mem.0
+  test_member = strip(translate(dsn_mem.i))
+  if test_member = ieasym_member then ieasym_found = 1
+  if test_member = ieasys_member then ieasys_found = 1
+end
+
+/* TODO handle a list of suffixes */
+/* TODO handle a list of parmlib names */
+/* look for significant entries in the parmlib members */
+/* if checks pass, submit the job that displays the ipl messages */
+
+if ieasym_found then say ieasym_member "found"
+    else say ieasym_member "not found"
+if ieasys_found then say ieasys_member "found"
+    else say ieasys_member "not found"
+
+exit 0

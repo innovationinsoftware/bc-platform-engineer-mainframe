@@ -1,0 +1,19 @@
+//********************************************************************
+//* ALLOCATE PROGRAM LIBRARIES FOR AN APPLICATION DEVELOPER.
+//********************************************************************
+//MAKEPLIB PROC PRI=1,SEC=1
+//CLEANUP  EXEC PGM=IEFBR14
+//OLDLIB   DD DSN=&LIBNAME,
+//            DISP=(MOD,DELETE,DELETE),
+//            UNIT=SYSDA,VOL=SER=USRVS1,
+//            SPACE=(TRK,(1,0)),
+//            DCB=&HLQ..MODELDCB.DCBPLIB,
+//            DSNTYPE=LIBRARY
+//ALLOC    EXEC PGM=IEFBR14
+//NEWLIB   DD DSN=&LIBNAME,
+//            DISP=(NEW,CATLG,DELETE),
+//            UNIT=SYSDA,VOL=SER=USRVS1,
+//            SPACE=(TRK,(&PRI,&SEC),RLSE),
+//            DCB=&HLQ..MODELDCB.DCBPLIB,
+//            DSNTYPE=LIBRARY
+//         PEND

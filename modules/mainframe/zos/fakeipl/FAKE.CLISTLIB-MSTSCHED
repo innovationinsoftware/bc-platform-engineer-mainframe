@@ -1,0 +1,275 @@
+/* REXX */
+/********************************************************************/
+/* This is part of the "fake ipl" exercise for Platform Engineer    */
+/* training.                                                        */
+/* Simulates Master Scheduler by looking for relevant members       */
+/* in the parmlibs whose dsns are passed in as the first argument.  */
+/* Performs some crude checking to see that students have entered   */
+/* a few of the most common keywords in those members.              */
+/* Submits a job that displays fake IPL messages.                   */
+/********************************************************************/
+parse upper arg parmlib suffix
+if dsname = "" | suffix = "" then do
+  say "Usage: mstsched parmlib suffix"
+  exit 12
+end
+
+say "in mstsched"
+say "parmlib" parmlib
+say "suffix" suffix
+
+/* hack to workaround extra trailing quotation mark that something */
+/* is sticking on the end of the last argument in the TSO command  */
+/* when this script is invoked from the FAKEIPL script.            */
+
+if substr(suffix, length(suffix), 1) = '"' then
+  suffix = substr(suffix, 1, length(suffix)-1)
+
+/* Seems like the following two if structures could be a           */
+/* procedure but I was unable to get a procedure to return a       */
+/* stem variable that the caller could use.                        */
+/* PIBCAK but no time to pursue.                                   */
+
+if left(parmlib,1) = "("
+  then
+  do
+    parmlib = substr(parmlib,2,length(parmlib)-2)
+    parmlib = strip(parmlib)
+    parmlib = translate(parmlib,' ',',')
+    count = words(parmlib)
+    do i = 1 to count
+      parmlibs.i = strip(word(parmlib, i))
+    end
+    parmlibs.0 = count
+  end
+  else
+  do
+    parmlibs.0 = 1
+    parmlibs.1 = parmlib
+  end
+
+  say "parmlibs.0" parmlibs.0
+  say "parmlibs.1" parmlibs.1
+  say "parmlibs.2" parmlibs.2
+
+if left(suffix,1) = "("
+  then
+  do
+    suffix = substr(suffix,2,length(suffix)-2)
+    suffix = strip(suffix)
+    suffix = translate(suffix,' ',',')
+    count = words(suffix)
+    do i = 1 to count
+      suffixes.i = strip(word(suffix, i))
+    end
+    suffixes.0 = count
+  end
+  else
+  do
+    suffixes.0 = 1
+    suffixes.1 = suffix
+  end
+
+  say "suffixes.0" suffixes.0
+  say "suffixes.1" suffixes.1
+  say "suffixes.2" suffixes.2
+
+
+ieasym_found = 0
+ieasys_found = 0
+
+/********************************************************************/
+/* See if the student has created IEASYMxx and/or IEASYSxx members  */
+/* in any of the parmlibs in their concatenation.                   */
+/********************************************************************/
+/* for each parmlib name supplied... */
+do lib_i = 1 until lib_i >= parmlibs.0
+  tmp=OUTTRAP(dsn_mem.)
+  "LISTDS '"parmlibs.lib_i"' MEMBERS"
+  tmp=OUTTRAP(OFF)
+  /* for each member name found in the parmlib... */
+  /* member names start with element 7 in the OUTTRAP stem var */
+  do mem_i=7 until mem_i >= dsn_mem.0
+    test_member = strip(translate(dsn_mem.mem_i))
+    /* for each member name suffix supplied... */
+    do suff_i = 1 until suff_i >= suffixes.0
+      clean_suffix = strip(translate(suffixes.suff_i))
+      ieasym_member = 'IEASYM'||clean_suffix
+      ieasys_member = 'IEASYS'||clean_suffix
+      /* take the first IEASYM member found */
+      if ieasym_found = 0 then do
+        if test_member = ieasym_member then do
+          ieasym_found = 1
+          ieasym_parmlib = parmlibs.lib_i
+          ieasym_suffix = clean_suffix
+        end
+      end
+      /* take the first IEASYS member found */
+      if ieasys_found = 0 then do
+        if test_member = ieasys_member then do
+          ieasys_found = 1
+          ieasys_parmlib = parmlibs.lib_i
+          ieasys_suffix = clean_suffix
+        end
+      end
+    end /* member name loop */
+  end
+end /* parmlib loop */
+
+if ieasym_found then do
+  say "IEASYM"||ieasym_suffix "found in" ieasym_parmlib
+end
+if ieasys_found then do
+  say "IEASYS"||ieasys_suffix "found in" ieasys_parmlib
+end
+
+/********************************************************************/
+/* See if the student has coded a SYSDEF statement in their IEASYM  */
+/* or IEASYS member. No need to verify SYS1.PARMLIB, etc.           */
+/********************************************************************/
+
+sysdef_found = 0
+ios_found = 0
+lpa_found = 0
+sqa_found = 0
+smf_found = 0
+sms_found = 0
+logrec_found = 0
+
+/* check IEASYM if user-written */
+
+if ieasym_found = 1 then do
+  if substr(ieasym_parmlib, 1, 5) <> "SYS1." then do
+    ieasym_dsn = ieasym_parmlib||"(IEASYM"||ieasym_suffix||")"
+    address TSO "ALLOC FI(INDD) DA('"ieasym_dsn"') SHR"
+    if rc <> 0 then do
+      say "Unable to allocate data set" ieasym_dsn
+      say "Return Code" rc
+    end
+    address TSO "EXECIO * DISKR INDD (STEM LINES. FINIS"
+    if rc <> 0 then do
+      say "Unable to read" ieasym_dsn
+      say "Return Code" rc
+      address TSO "FREE FI(INDD)"
+      exit rc
+    end
+    do line_i = 1 to LINES.0
+      keyword = strip(translate(word(LINES.line_i,1)))
+      if keyword = "SYSDEF" then do
+        sysdef_found = 1
+        sysdef_value = strip(translate(word(LINES.line_i,2)))
+        leave
+      end
+    end
+ end
+end
+
+address TSO "FREE FI(INDD)"
+
+/* check IEASYS (including system defaults) */
+
+if ieasys_found = 1 then do
+  ieasys_dsn = ieasys_parmlib||"(IEASYS"||ieasys_suffix||")"
+  address TSO "ALLOC FI(INDD) DA('"ieasys_dsn"') SHR"
+  if rc <> 0 then do
+    say "Unable to allocate data set" ieasys_dsn
+    say "Return Code" rc
+  end
+  address TSO "EXECIO * DISKR INDD (STEM LINES. FINIS"
+  if rc <> 0 then do
+    say "Unable to read" ieasys_dsn
+    say "Return Code" rc
+    address TSO "FREE FI(INDD)"
+    exit rc
+  end
+  do line_i = 1 to LINES.0
+    keyword = strip(translate(word(LINES.line_i,1)))
+
+ /* say "keyword is" keyword */
+
+    if substr(keyword,1,3) = "IOS" then do
+      ios_found = 1
+      ios_value = keyword
+    end
+    if substr(keyword,1,3) = "LPA" then do
+      lpa_found = 1
+      lpa_value = keyword
+    end
+    if substr(keyword,1,3) = "SQA" then do
+      sqa_found = 1
+      sqa_value = keyword
+    end
+    if substr(keyword,1,3) = "SMF" then do
+      smf_found = 1
+      smf_value = keyword
+    end
+    if substr(keyword,1,3) = "SMS" then do
+      sms_found = 1
+      sms_value = keyword
+    end
+    if substr(keyword,1,6) = "LOGREC" then do
+      logrec_found = 1
+      logrec_value = keyword
+    end
+  end
+end
+
+address TSO "FREE FI(INDD)"
+
+/********************************************************************/
+/* See if the student has specified enough of the basic parameters  */
+/* for an IPL for us to go ahead and fake the IPL.                  */
+/********************************************************************/
+
+missing_definitions = 0
+if sysdef_found = 0 then do
+  say "No SYSNAME found"
+  missing_definitions = 1
+end
+if ios_found = 0 then do
+  say "No IOS definition found"
+  missing_definitions = 1
+end
+if lpa_found = 0 then do
+  say "No LPA definition found"
+  missing_definitions = 1
+end
+if sqa_found = 0 then do
+  say "No SQA specification found"
+  missing_definitions = 1
+end
+if smf_found = 0 then do
+  say "No SMF definition found"
+  missing_definitions = 1
+end
+if sms_found = 0 then do
+  say "No SMS definition found"
+  missing_definitions = 1
+end
+if logrec_found = 0 then do
+  say "No LOGREC specification found"
+  missing_definitions = 1
+end
+
+if missing_definitions = 1 then do
+  say "Aborting IPL"
+  exit 12
+end
+
+say "Starting IPL with the following settings:"
+say "    " sysdef_value
+say "    " ios_value
+say "    " lpa_value
+say "    " sqa_value
+say "    " smf_value
+say "    " sms_value
+say "    " logrec_value
+
+say " "
+say "Check SDSF output from the following job"
+say " "
+
+address TSO
+"SUB 'FAKE.JCL(IPLFAKE)'"
+
+exit 0

@@ -224,3 +224,73 @@ This repository contains the files for the Platform Engineer Mainframe bootcamp.
 ### Day 4: Observability & OTEL
 - [4.1 - Deploy API](./modules/Monitoring/labs/4.1-deploy-api.md)
 - [4.2 - OTEL](./modules/Monitoring/labs/4.2-OTEL.md)
+
+## Mainframe Foundations 
+
+### Day 1: Access course repo, access z/OS environment, explore IBM docs, intro to ISPF
+- [z/OS 1: Fork the course repository](./modules/mainframe/zos-basics/zos-01-fork-course-repository.md)
+- [z/OS 2: Access the z/OS lab environment](./modules/mainframe/zos-basics/zos-02-access-zos-lab-environment.md)
+- [z/OS 3: Explore IBM documentation](./modules/mainframe/zos-basics/zos-03-explore-ibm-documentation.md)
+- [z/OS 4: Explore ISPF](./modules/mainframe/zos-basics/zos-04-explore-tso-and-ispf.md)
+
+### Day 2: Create data sets using ISPF, get started with JCL
+- [z/OS 5: Create a data set using ISPF](./modules/mainframe/zos-basics/zos-05-create-data-set-using-ispf.md)
+- [z/OS 6: Identify JCL statements](./modules/mainframe/zos-basics/zos-06-identify-jcl-statements.md)
+- [z/OS 7: Create a JCL Library using ISPF](./modules/mainframe/zos-basics/zos-07-create-a-jcl-library-using-ispf.md)
+- [z/OS 8: Write and Run a Do-Nothing Job](./modules/mainframe/zos-basics/zos-08-write-and-run-a-do-nothing-job.md)
+- [z/OS 9: Write a Job to Create a Data Set](./modules/mainframe/zos-basics/zos-09-write-a-job-to-create-a-data-set.md)
+- [z/OS 10: Make the Job Idempotent](./modules/mainframe/zos-basics/zos-10-make-the-job-idempotent.md)
+
+### Day 3: Write a job to provision libraries for an application developer
+- [z/OS 11: Write a Job to Create a Source Library](./modules/mainframe/zos-basics/zos-11-write-a-job-to-create-a-source-library.md)
+- [z/OS 12: Create a model DSCB suitable for source libraries](./modules/mainframe/zos-basics/zos-12-create-a-model-dscb-for-source-libraries.md)
+- [z/OS 13: Add DD Statements for the TST JCL libary](./modules/mainframe/zos-basics/zos-13-add-dd-statements-for-tst-jcl-library.md)
+
+### Day 4: Expand and improve the provisioning job
+- [z/OS 14: Refactor Your Provisioning Job](./modules/mainframe/zos-basics/zos-14-refactor-your-provisioning-job.md)
+- [z/OS 15: Write a job to create program libraries](./modules/mainframe/zos-basics/zos-15-write-a-job-to-create-program-libraries.md)
+- [z/OS 16: Set up a one-shot provisioning job](./modules/mainframe/zos-basics/zos-16-set-up-a-one-shot-provisioning-job.md)
+
+### Day 5: Complete the provisioning job, practice using TSO commands
+- [z/OS 17: Seed some of the DEV libraries](./modules/mainframe/zos-basics/zos-17-seed-some-libraries.md)
+- [z/OS 18: Practice using TSO commands](./modules/mainframe/zos-basics/zos-18-practice-using-tso-commands.md)
+- [z/OS 19: Define a VSAM KSDS Cluster](./modules/mainframe/zos-basics/zos-19-define-a-vsam-ksds-cluster-using-jcl.md)
+
+### Day 6: REXX, TSO, and batch 
+- [z/OS 20: Write a REXX script](./modules/mainframe/zos-basics/zos-20-write-a-rexx-script.md)
+- [z/OS 21: Run a REXX script with TSO batch](./modules/mainframe/zos-basics/zos-21-run-rexx-from-tso-batch.md)
+- [z/OS 22: Writing a shell script under USS](./modules/mainframe/zos-basics/zos-22-write-a-uss-shell-script.md)
+- [z/OS 23: Run a shell script with BPXBATCH](./modules/mainframe/zos-basics/zos-23-run-uss-shell-script-from-batch.md)
+
+## z/OS System Programming 
+
+### Day 7: z/OS Initial Program Load, addressing modes, address spaces, TSO in batch mode, intro to REXX
+- [z/OS 24: Set Up a Fake IPL](./modules/mainframe/zos-basics/zos-24-set-up-a-fake-ipl.md) 
+- [z/OS 25: Explore SDSF System panels](./modules/mainframe/zos-basics/zos-25-explore-sdsf-system-panels.md)
+- [z/OS 26: Learn about SMS](./modules/mainframe/zos-basics/zos-26-learn-about-sms.md)
+- [z/OS 27: Learn about WLM](./modules/mainframe/zos-basics/zos-27-learn-about-wlm.md)
+
+### Day 8: z/OS Security and the Resource Access Control Facility (RACF)
+
+- [z/OS 28: Display your own RACF info](./modules/mainframe/zos-basics/zos-28-display-your-own-racf-info.md)
+- [z/OS 29: Create a new user profile](./modules/mainframe/zos-basics/zos-29-create-a-new-user-profile.md)
+- [z/OS 30: Add TSO access for the new user](./modules/mainframe/zos-basics/zos-30-add-tso-access-for-the-new-user.md)
+- [z/OS 31: Remove values from a user profile](./modules/mainframe/zos-basics/zos-31-remove-values-from-a-user-profile.md)
+- [z/OS 32: Specify an initial command to run upon successful TSO sign-on](./modules/mainframe/zos-basics/zos-32-specify-initial-command-to-run-on-signon.md)
+- [z/OS 33: Create a RACF group, connect a user to it, enable USS access](./modules/mainframe/zos-basics/zos-33-create-group-enable-uss-access.md)
+
+### Day 9: JES2 Configuration, JES3 Deprecation 
+
+No labs.
+
+
+### Day 9: TCP/IP 
+
+- [z/OS 34: Enable ssh access for yourself](./modules/mainframe/zos-basics/zos-34-enable-ssh-access-for-yourself.md)
+- [z/OS 35: Transfer files over ssh with scp](./modules/mainframe/zos-basics/zos-35-transfer-files-over-ssh-with-scp.md)
+
+
+### Day 9: UNIX System Services
+
+- [z/OS 36: Explore USS commands](./modules/mainframe/zos-basics/zos-36-explore-uss.md)
+

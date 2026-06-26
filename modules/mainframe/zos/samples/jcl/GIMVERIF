@@ -1,0 +1,22 @@
+//IBMUSERV  JOB ,'VERIFY SANDBOX CSI',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             REGION=0M,
+//             NOTIFY=&SYSUID
+// EXPORT SYMLIST=(HLQ)
+// SET HLQ=PLAT01.CHUMP
+//VERIFY  EXEC PGM=GIMSMP
+//SMPCSI   DD DSN=&HLQ..GLOBAL.CSI,DISP=SHR
+//SMPLOG   DD SYSOUT=*
+//SMPOUT   DD SYSOUT=*
+//SMPRPT   DD SYSOUT=*
+//SMPLIST  DD SYSOUT=*
+//SMPPTS   DD DSN=&HLQ..SMPPTS,DISP=SHR
+//SYSPRINT DD SYSOUT=*
+//SMPCNTL  DD *,SYMBOLS=JCLONLY
+ SET BDY(GLOBAL).   /* List the contents of the Global zone */
+ LIST.
+ SET BDY(TARGET).   /* ...and the Target zone */
+ LIST.
+ SET BDY(DLIB).     /* ...and the DLIB zone */
+ LIST.
+/*

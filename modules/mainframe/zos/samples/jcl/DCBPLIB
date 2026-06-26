@@ -1,0 +1,20 @@
+//IBMUSERP  JOB ,'MODEL DCB PROGLIB',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             NOTIFY=&SYSUID
+//********************************************************************
+//* CATALOG A MODEL DSCB FOR A LIBRARY (PDSE) FOR PROGRAM OBJECTS
+//********************************************************************
+//CLEANUP  EXEC PGM=IEFBR14
+//DD1      DD DSN=&SYSUID..MODELDCB.DCBPLIB,
+//            DISP=(MOD,DELETE,DELETE),
+//            UNIT=SYSDA,VOL=SER=USRVS1,
+//            SPACE=(TRK,(0)),
+//            DSNTYPE=LIBRARY,
+//            DCB=(DSORG=PO,RECFM=U,LRECL=0,BLKSIZE=4096)
+//ALLOC    EXEC PGM=IEFBR14
+//DD1      DD DSN=&SYSUID..MODELDCB.DCBPLIB,
+//            DISP=(NEW,CATLG,DELETE),
+//            UNIT=SYSDA,VOL=SER=USRVS1,
+//            SPACE=(TRK,(0)),
+//            DSNTYPE=LIBRARY,
+//            DCB=(DSORG=PO,RECFM=U,LRECL=0,BLKSIZE=4096)

@@ -1,0 +1,8 @@
+//IBMUSERJ  JOB ,'HEY NOW',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             TIME=1440,REGION=0M,
+//*            RESTART=STEPNAME,
+//             NOTIFY=&SYSUID
+//*********************************************************************
+//* JOB STATEMENT
+//*********************************************************************

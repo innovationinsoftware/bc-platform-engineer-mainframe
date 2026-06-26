@@ -1,0 +1,105 @@
+/* REXX */
+/********************************************************************/
+/* This is part of the "fake ipl" exercise for Platform Engineer    */
+/* training.                                                        */
+/* Simulates the LOAD action on HMC by accepting a two-character    */
+/* suffix and looking for a member named LOADxx in data set         */
+/* FAKE.IPLPARM. If found, the script picks out certain information */
+/* and passes it to script MSTSCHED. Otherwise the "ipl" fails.     */
+/********************************************************************/
+parse upper arg suffix
+if suffix = '' then do
+  say "Supply a two-character suffix as the first argument"
+  exit 12
+end
+ipl_parmlib = 'FAKE.IPLPARM'
+ipl_basename = 'LOAD'
+ipl_dsn = ipl_parmlib||'('||ipl_basename||suffix||')'
+address TSO "ALLOC FI(INDD) DA('"ipl_dsn"') SHR"
+if rc <> 0 then do
+  say "Unable to allocate data set" ipl_dsn
+  say "Return Code" rc
+end
+address TSO "EXECIO * DISKR INDD (STEM LINES. FINIS"
+if rc <> 0 then do
+  say "Unable to read" ipl_dsn
+  say "Return Code" rc
+  address TSO "FREE FI(INDD)"
+  exit rc
+end
+iodf_found = 0
+initsql_found = 0
+ieasym_found = 0
+ieasys_found = 0
+parmlib_count = 0
+parmlibs.0 = 0
+do line_i = 1 to LINES.0
+  first_keyword = word(LINES.line_i,1)
+  if first_keyword = "IODF" then do
+    iodf_found = 1
+  end
+  if first_keyword = "INITSQA" then do
+    initsqa_found = 1
+  end
+  if first_keyword = "IEASYM" then do
+    ieasym_found = 1
+    ieasym_arg = word(LINES.line_i,2)
+  end
+  else
+  if first_keyword = "IEASYS" then do
+    ieasys_found = 1
+    ieasys_arg = word(LINES.line_i,2)
+  end
+  else
+  if first_keyword = "PARMLIB" then do
+      parmlib_count = parmlib_count + 1
+      parmlibs.0 = parmlib_count
+      parmlibs.parmlib_count = word(LINES.line_i,2)
+  end
+end
+address TSO "FREE FI(INDD)"
+
+if (iodf_found=1 & initsqa_found=1 & ieasym_found=1 & parmlibs.0 > 0)
+  then do
+
+    say "Values collected:"
+    if iodf_found = 1 then say "IODF"
+    if initsqa_found = 1 then say "INITSQA"
+    if ieasym_found = 1 then say "IEASYM" ieasym_arg
+    if ieasys_found = 1 then say "IEASYS" ieasys_arg
+    say "parmlib names:" parmlibs.0
+
+    do p = 1 to parmlibs.0
+      say parmlibs.p
+    end
+
+    if parmlibs.0 > 1 then do
+      arglist = '('
+      spacer = ''
+      do p = 1 to parmlibs.0
+        arglist = arglist||spacer||parmlibs.p
+        spacer = ','
+      end
+      arglist = arglist||')'
+    end
+    else do
+      arglist = parmlibs.1
+    end
+
+    cmd = "EXEC 'FAKE.CLISTLIB(MSTSCHED)" ||"' "
+    cmd = cmd || "'" || arglist || " " || ieasym_arg                     || '"'
+
+    say "cmd variable contains:"
+    say cmd
+
+    address TSO cmd
+    if rc <> 0 then say 'EXEC rc=' rc
+    exit rc
+  end
+  else do
+    say "Invalid LOADxx member, IPL aborted"
+    exit 16
+  end
+
+
+exit 0

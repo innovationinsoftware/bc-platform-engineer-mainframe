@@ -1,0 +1,12 @@
+//IBMUSERB JOB ,'BUILD CHUMP',CLASS=A,MSGCLASS=X,
+//         MSGLEVEL=(1,1),NOTIFY=&SYSUID
+//*********************************************************************
+//* BUILD EACH PROGRAM IN THE CHINDOGU UTILITY MEGA-PACK.
+//* CHANGE THE VALUE OF HLQ BELOW FOR EACH DEVELOPER USERID.
+//*********************************************************************
+//         SET HLQ=PLAT01.CHUMP
+//         SET PROG=YYZGREET
+//         JCLLIB ORDER=(&HLQ..DEV.PROCLIB)
+//YYZGREET EXEC YYZBUILD
+//         SET PROG=YYZSETCC
+//YYZSETCC EXEC YYZBUILD

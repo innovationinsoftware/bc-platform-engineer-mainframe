@@ -1,0 +1,4 @@
+/* REXX */                                                              00010000
+ADDRESS TSO                                                             00020006
+"LISTDS 'IBMUSER.*.JCL'"                                                00021007
+exit 0                                                                  00030000

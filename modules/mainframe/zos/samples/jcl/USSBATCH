@@ -1,0 +1,6 @@
+//IBMUSERU  JOB ,'RUN SHELL SCRIPT',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             NOTIFY=&SYSUID
+//STEP1     EXEC PGM=BPXBATCH,TIME=1440,
+// PARM='sh /u/ibmuser/datetime.sh'
+//STDOUT      DD SYSOUT=*

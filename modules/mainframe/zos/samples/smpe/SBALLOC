@@ -1,0 +1,96 @@
+//IBMUSERA  JOB ,'ALLOC SMPE DS',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             NOTIFY=&SYSUID
+// SET HLQ=PLAT01
+//*********************************************************************
+//* OUT WITH THE OLD
+//*********************************************************************
+//DELETE   EXEC PGM=IEFBR14
+//HOLDDATA DD DSN=&HLQ..CHUMP.HOLDDATA,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=121,BLKSIZE=27951)
+//SMPLOG   DD DSN=&HLQ..CHUMP.SMPLOG,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PS,RECFM=VB,LRECL=510,BLKSIZE=27998)
+//SMPLOGA  DD DSN=&HLQ..CHUMP.SMPLOGA,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PS,RECFM=VB,LRECL=510,BLKSIZE=27998)
+//SMPLTS   DD DSN=&HLQ..CHUMP.SMPLTS,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PS,RECFM=U,LRECL=0,BLKSIZE=32760),
+//           DSNTYPE=LIBRARY
+//SMPMTS   DD DSN=&HLQ..CHUMP.SMPMTS,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920)
+//SMPPTS   DD DSN=&HLQ..CHUMP.SMPPTS,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920),
+//           DSNTYPE=LIBRARY
+//SMPSCDS  DD DSN=&HLQ..CHUMP.SCDS,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920)
+//SMPSTS   DD DSN=&HLQ..CHUMP.STS,
+//           DISP=(MOD,DELETE,DELETE),
+//           SPACE=(TRK,(0,0,0)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920)
+//*********************************************************************
+//* IN WITH THE NEW
+//*********************************************************************
+//ALLOC    EXEC PGM=IEFBR14
+//HOLDDATA DD DSN=&HLQ..CHUMP.HOLDDATA,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(2,2,5),RLSE),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=121,BLKSIZE=27951)
+//SMPLOG   DD DSN=&HLQ..CHUMP.SMPLOG,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(1,1)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PS,RECFM=VB,LRECL=510,BLKSIZE=27998)
+//SMPLOGA  DD DSN=&HLQ..CHUMP.SMPLOGA,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(1,1)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PS,RECFM=VB,LRECL=510,BLKSIZE=27998)
+//SMPLTS   DD DSN=&HLQ..CHUMP.SMPLTS,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(1,1)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PS,RECFM=U,LRECL=0,BLKSIZE=32760),
+//           DSNTYPE=LIBRARY
+//SMPMTS   DD DSN=&HLQ..CHUMP.SMPMTS,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(2,2,10)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920)
+//SMPPTS   DD DSN=&HLQ..CHUMP.SMPPTS,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(2,2)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920),
+//           DSNTYPE=LIBRARY
+//SMPSCDS  DD DSN=&HLQ..CHUMP.SCDS,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(2,2,10)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920)
+//SMPSTS   DD DSN=&HLQ..CHUMP.STS,
+//           DISP=(NEW,CATLG,DELETE),
+//           SPACE=(TRK,(2,2,10)),
+//           UNIT=SYSDA,
+//           DCB=(DSORG=PO,RECFM=FB,LRECL=80,BLKSIZE=27920)

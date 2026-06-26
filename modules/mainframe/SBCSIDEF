@@ -1,0 +1,35 @@
+//IBMUSERC  JOB ,'DEFINE CSI',
+//             CLASS=A,MSGCLASS=X,MSGLEVEL=(1,1),
+//             NOTIFY=&SYSUID
+//********************************************************************
+//* DELETE/DEFINE SANDBOX CSI FOR SMP/E
+//********************************************************************
+// EXPORT SYMLIST=(HLQ)
+// SET HLQ=PLAT01
+//DEFCSI   EXEC PGM=IDCAMS
+//SYSPRINT DD SYSOUT=*
+//SYSOUT   DD SYSOUT=*
+//SYSIN    DD *,SYMBOLS=JCLONLY
+ DELETE &HLQ..CHUMP.CSI
+ IF LASTCC < 9 THEN -
+ DEFINE CLUSTER( -
+   NAME(&HLQ..CHUMP.CSI) -
+   KEYS(24 0) -
+   RECORDSIZE(24 143) -
+   FREESPACE(10 5) -
+   CISZ(4096) -
+   INDEXED -
+   CYLINDERS(4 4) -
+   UNIQUE -
+ ) -
+ DATA( -
+   NAME(&HLQ..CHUMP.CSI.DATA) -
+ ) -
+ INDEX( -
+   NAME(&HLQ..CHUMP.CSI.INDEX) -
+ )
+ IF LASTCC = 0 THEN -
+   LISTCAT ENTRIES(&HLQ..CHUMP.CSI) ALL
+ IF LASTCC = 0 THEN -
+   PRINT INDATASET(&HLQ..CHUMP.CSI) COUNT(1)
+/*

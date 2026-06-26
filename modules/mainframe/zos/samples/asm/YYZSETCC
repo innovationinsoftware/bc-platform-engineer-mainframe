@@ -1,0 +1,69 @@
+***********************************************************************
+* THIS PROGRAM IS PART OF THE CHINDOGU UTILITY MEGAPACK (CHUMP).
+* YYZSETCC INCORPORATES ALL THE FUNCTIONALITY OF IEFBR14.
+* IT ALSO SETS THE CONDITION CODE TO THE VALUE SPECIFIED IN
+* PARM='CC=NNNN'.
+* COND CODE MUST BE FOUR DIGITS.
+* WHEN NO PARM= IS CODED, WHEN THE PARM= IS INVALID, OR WHEN THE
+* SPECIFIED COND CODE IS NOT NUMERIC, IT DEFAULTS TO CC=0000.
+***********************************************************************
+YYZSETCC CSECT
+YYZSETCC AMODE 24
+YYZSETCC RMODE 24
+         STM   R14,R12,12(R13)            PROLOG (CRUDE)
+         BALR  R12,0
+         USING *,R12
+         LA    R11,SAVEAREA
+         ST    R13,4(R11)
+         ST    R11,8(R13)
+         LR    R13,R11
+
+         LR    R9,R1                      GET PARM
+         LH    R10,6(R9)
+         STH   R10,PLEN
+         MVC   PKEY(3),8(R9)
+         MVC   PCOND(4),11(R9)
+         CLC   PKEY,=CL3'CC='             SEE IF PARM IS 'CC='
+         BNE   DEFLT                      DEFAULT TO CC=0000
+         TRT   PCOND,DIGTAB               CHECK FOR NUMERICS
+         BNZ   DEFLT                      DEFAULT TO CC=0000
+         PACK  PACKED,PCOND               DISPLAY TO DECIMAL
+         CVB   R6,PACKED                  DECIMAL TO BINARY
+         B     EPILOG
+DEFLT    SR    R6,R6                      SET DEFAULT VALUE
+EPILOG   LR    R15,R6                     COPY VALUE TO R15
+         BR    R14
+         DS    0D
+DIGTAB   DC    256X'FF'
+         ORG   DIGTAB+C'0'
+         DC    10X'00'
+         ORG   DIGTAB+256
+         DS    0D
+         DC    CL8'PARMAREA'
+PLEN     DS    H
+PKEY     DS    CL3
+PCOND    DS    CL4
+         DS    0D
+         DC    CL8'  PACKED'
+PACKED   DS    PL8
+         DS    0D
+         DC    CL8'===CCVAL'
+CCVAL    DS    F
+         DS    0D
+SAVEAREA DS    18F
+R1       EQU   1
+R2       EQU   2
+R3       EQU   3
+R4       EQU   4
+R5       EQU   5
+R6       EQU   6
+R7       EQU   7
+R9       EQU   9
+R10      EQU   10
+R11      EQU   11
+R12      EQU   12
+R13      EQU   13
+R14      EQU   14
+R15      EQU   15
+         END   YYZSETCC
+         LTORG

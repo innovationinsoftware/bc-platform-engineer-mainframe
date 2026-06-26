@@ -1,0 +1,99 @@
+***********************************************************************
+* THIS PROGRAM IS PART OF THE CHINDOGU UTILITY MEGAPACK (CHUMP).
+* YYZGREET WRITES A GREETING TO DD CHUMPOUT.
+* BY DEFAULT THE GREETING IS IN ENGLISH.
+* OVERRIDE THIS WITH PARM='LANG=XX' WHERE XX IS ONE OF:
+* EN = ENGLISH
+* ES = SPANISH
+* DE = GERMAN
+* JP = JAPANESE
+* ZH = MANDARIN
+* WHEN NO PARM= IS CODED, WHEN THE PARM= IS INVALID, OR WHEN THE
+* LANGUAGE CODE IS NOT KNOWN TO THE PROGRAM, IT DEFAULTS TO ENGLISH.
+***********************************************************************
+YYZGREET CSECT
+YYZGREET AMODE 24
+YYZGREET RMODE 24
+         STM   R14,R12,12(R13)            PROLOG (CRUDE)
+         BALR  R12,0
+         USING *,R12
+         LA    R11,SAVEAREA
+         ST    R13,4(R11)
+         ST    R11,8(R13)
+         LR    R13,R11
+         LR    R9,R1                      GET PARM
+         OPEN  (CHUMPOUT,(OUTPUT))
+         MVC   PLEN,0(R9)                 SEE IF PARM IS LANG=
+         MVC   PVAL(L'PVAL),8(R9)
+         MVI   OUTDATA,C' '
+         MVC   OUTDATA+1(L'OUTDATA-1),OUTDATA
+         CLC   PKEY,=CL5'LANG='
+         BNE   DEFLT                      DEFAULT TO EN
+KEYOK    EQU   *                          LOOK FOR LANG VALUE
+         LA    R4,DICT
+LOOK4IT  CLI   0(R4),X'00'
+         BE    DEFLT
+         CLC   PLANG,0(R4)
+         BE    FOUND
+         LA    R4,8(R4)
+         B     LOOK4IT
+FOUND    L     R4,4(R4)
+         MVC   OUTDATA(132),0(R4)
+         B     PUTLINE
+DEFLT    MVC   OUTDATA,MSG_EN
+PUTLINE  EQU   *
+         PUT   CHUMPOUT,OUTDATA
+         CLOSE (CHUMPOUT)
+         B     EPILOG
+BADOPEN  EQU   *
+         B     EPILOG
+PACKED   DS    D
+ERRVAL   DS    CL4
+EPILOG   DS    0D
+         SR    R15,R15                    SET COND CODE
+         L     R13,4(R13)
+         LM    R14,R12,12(R13)
+         BR    R14
+CHUMPOUT DCB   DDNAME=CHUMPOUT,DSORG=PS,RECFM=FB,LRECL=133,MACRF=(PM)
+SAVEAREA DS    18F
+OUTDATA  DS    CL132
+         DS    0H
+NUMTRT   TRT   2(*-*,R3),TESTNUM
+         DS    0H
+NUMPACK  PACK  16(8,R13),2(*-*,R3)
+         DS    0H
+TESTNUM  DC    0XL256'0',(C'0')X'04',10X'00',(256-(*-TESTNUM))X'04'
+         DS    0D
+PLEN     DS    H
+PVAL     DS    0CL7
+PKEY     DS    CL5
+PLANG    DS    CL2
+         DS    0D
+MSG_EN   DC    CL132'HELLO'
+MSG_ES   DC    CL132'HOLA'
+MSG_DE   DC    CL132'HALLO'
+MSG_JP   DC    CL132'KONNICHIWA'
+MSG_ZH   DC    CL132'NI HAO'
+         DS    0D
+DICT     DC    CL2'EN',A(MSG_EN)
+         DC    CL2'ES',A(MSG_ES)
+         DC    CL2'DE',A(MSG_DE)
+         DC    CL2'JP',A(MSG_JP)
+         DC    CL2'ZH',A(MSG_ZH)
+         DC    X'00'
+         DS    0D
+R1       EQU   1
+R2       EQU   2
+R3       EQU   3
+R4       EQU   4
+R5       EQU   5
+R6       EQU   6
+R9       EQU   9
+R10      EQU   10
+R11      EQU   11
+R12      EQU   12
+R13      EQU   13
+R14      EQU   14
+R15      EQU   15
+         END   YYZGREET
+         LTORG
